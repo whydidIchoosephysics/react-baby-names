@@ -1,6 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 
+// Components
 import { NamePicker } from "./components/name-picker.js";
+import { Search } from "./components/search.js";
 
 /*
 <App>
@@ -12,7 +14,12 @@ import { NamePicker } from "./components/name-picker.js";
 */
 
 function App({ names }) {
-  return <NamePicker names={names} />;
+  return (
+    <Fragment>
+      <Search />
+      <NamePicker names={names} />
+    </Fragment>
+  );
 }
 
 export default App;
