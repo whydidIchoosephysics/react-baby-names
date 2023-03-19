@@ -1,8 +1,10 @@
-import React, { Fragment } from "react";
+import React, { useState, Fragment } from "react";
 
 // Components
 import { NamePicker } from "./components/name-picker.js";
 import { Search } from "./components/search.js";
+import { ShortList } from "./components/short-list.js";
+import { ResetSearch } from "./components/reset-search.js";
 
 /*
 <App>
@@ -14,10 +16,24 @@ import { Search } from "./components/search.js";
 */
 
 function App({ names }) {
+  const [searchValue, setSearchValue] = useState("");
+  const [shortList, setShortList] = useState([]);
+
   return (
     <Fragment>
-      <Search />
-      <NamePicker names={names} />
+      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+      <ShortList
+        names={names}
+        shortList={shortList}
+        setShortList={setShortList}
+      />
+      <NamePicker
+        names={names}
+        searchValue={searchValue}
+        shortList={shortList}
+        setShortList={setShortList}
+      />
+      <ResetSearch searchValue={searchValue} setSearchValue={setSearchValue} />
     </Fragment>
   );
 }

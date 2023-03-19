@@ -1,15 +1,19 @@
 import React from "react";
 
-function NamePicker({ names }) {
-  return (
-    <ul>
-      {names.map((entry) => (
-        <li className={entry.sex} key={entry.id}>
-          <button>{entry.name}</button>
-        </li>
-      ))}
-    </ul>
-  );
+import { NameList } from "./name-list.js";
+
+function NamePicker({ names, searchValue, shortList, setShortList }) {
+  const filteredNames = names
+    .filter((entry) =>
+      entry.name.toLowerCase().includes(searchValue.toLowerCase())
+    )
+    .filter((entry) => !shortList.includes(entry.id));
+
+  function addToShortList(id) {
+    setShortList([...shortList, id]);
+  }
+
+  return <NameList nameList={filteredNames} onItemClick={addToShortList} />;
 }
 
 export { NamePicker };
